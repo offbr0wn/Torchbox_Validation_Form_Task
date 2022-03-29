@@ -5,7 +5,7 @@ function App() {
   //Custom hook call
   const { handleChange, values, errors, checkbox, tigerField, handleSubmit } =
     useForm();
-
+  
   const tigerCheckedBox = document.querySelectorAll(
     "input[value=tiger]:checked"
   ).length;
@@ -96,7 +96,7 @@ function App() {
             />
             <label for="donkey">Donkey</label>
           </p>
-          <p className={tigerField.tigerInput ? "error" : null}>
+          <p className={tigerField.tiger_type ? "error" : null}>
             <label className="label" for="tiger_type">
               Type of tiger
             </label>

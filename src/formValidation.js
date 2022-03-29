@@ -9,7 +9,7 @@ const useForm = () => {
   const [checkbox, setCheckbox] = useState({});
   const [tigerField, setTigerField] = useState({});
 
-//   const tigerCheckedBox = document.querySelectorAll("input[name=tiger_type]");
+  //   const tigerCheckedBox = document.querySelectorAll("input[name=tiger_type]");
 
   const validate = (event, name, value) => {
     switch (name) {
@@ -33,13 +33,12 @@ const useForm = () => {
         if (value.length <= 7) {
           setErrors({
             ...errors,
-            password: "Password should contains atleast 8 charaters",
+            password: "Password should contains at least 8 characters or more ",
           });
         } else {
-          const newObj = omit(errors, "password");
+          let newObj = omit(errors, "password");
 
           setErrors(newObj);
-          //console.log(errors);
         }
         break;
 
@@ -55,13 +54,9 @@ const useForm = () => {
         }
 
         if (boxesTicked > 1) {
-          //console.log("1");
-          const newObj = omit(checkbox, "checkbox");
+          let newObj = omit(checkbox, "checkbox");
           setCheckbox(newObj);
-
-          //console.log( newObj);
         } else {
-          //console.log("2");
           setCheckbox({
             ...checkbox,
             checkbox: "You must select at least two",
@@ -77,26 +72,19 @@ const useForm = () => {
 
         const tigerInput = document.querySelectorAll("input[name=tiger_type]");
 
-        if (
-          //false
-          !tigerCheckedBox &&
-          tigerInput[0].value
-        ) {
-          const newObj = omit(tigerField, "tiger_type");
+        if (!tigerCheckedBox && event.target.value.length !== 0) {
+          let newObj = omit(tigerField, "tiger_type");
           setTigerField(newObj);
-          console.log("1");
         } else {
-          console.log("2");
           setTigerField({
             ...tigerField,
-            tigerInput: "Please input a tiger type ",
+            tiger_type: "Please input a tiger type ",
           });
         }
 
         break;
-
-      default:
-        break;
+      //   default:
+      //     break;
     }
   };
 
@@ -122,16 +110,6 @@ const useForm = () => {
     const tigerCheckedBox = document.querySelectorAll(
       "input[name=tiger_type]"
     )[0].disabled;
-
-    // console.log(
-    //   //values,
-    //   //   tigerField,
-    //   Object.keys(errors).length,
-    //   Object.keys(checkbox).length,
-    //   Object.keys(tigerField).length,
-    //   Object.keys(values).length,
-    //   tigerCheckedBox
-    // );
 
     if (!tigerCheckedBox) {
       if (
